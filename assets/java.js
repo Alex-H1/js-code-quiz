@@ -1,56 +1,69 @@
 var startgame = document.getElementById("button");
-var timerEl = document.getElementById("timer");
+var timerEL = document.getElementById("timer");
 var headerEl = document.querySelector("header");
-var answerEl = document.getElementById("anwers");
-var secondsLeft= 5;
+var secondsLeft = 5;
 var timerid;
-
 var questionSection = document.getElementById("question");
+var answersEl = document.getElementById("answers")
+var nextQuestion = document.querySelectorAll("li")
+
+
 console.log(questionSection)
 var listQuestions = [
     "question 1", 
     "question 2",
-    "question 3",
-]
+    "question 3"
+];
 
+var questionAnswers = [
+    'answersOne',
+    'answersTwo',
+    'answersThree'
+];
 
-function countdown(){
-    if(secondsLeft<=5){
-        secondsLeft --
-        timerEl.textContent = secondsLeft;
-    }if(secondsLeft<=0){
-        console.log("worked")
-    }
-}
+questionAnswers[0]=[
+    '1',
+    '2',
+    '3'
+]   
 
-
+function showAnswers(){ 
+    questionAnswers[0].forEach(function(item){
+    var li =document.createElement("li");
+    var text =document.createTextNode(item);
+    li.appendChild(text);
+    answersEl.appendChild(li);
+    })
+};
 
 function showquestion(){
-    var questionH = document.createElement("h1");
-    console.log(questionH);
+    var questionH = document.createElement("h1")
+    console.log(questionH)
     questionH.textContent= listQuestions[0];
-    console.log(questionH);
+    console.log(questionH)
     questionSection.appendChild(questionH);
+};
+
+function nextQuestion(){
+    console.log(nextQuestion);
 }
 
-
-
-function showChoices(){
-    listQuestions[0].array.forEach(item => {
-    var li0 = document.createElement("li");
-    li0.innerText =item;
-    answerEl.appendChild(li0);
-    console.log(answerEl);
-    });
-}
-
-
+function countdown(){
+    secondsLeft --
+    timerEL.textContent = secondsLeft;
+    if(secondsLeft<=0){
+        clearInterval(timerid)
+    }
+};
 
 function startquiz(){
     headerEl.style.display="none";
-    timerEl.textContent = secondsLeft;       
-    timerid=setInterval(countdown, 1000)
-    showquestion()
-}
+    timerEL.textContent = secondsLeft;       
+    timerid=setInterval(countdown, 1000);
+    showquestion();
+    showAnswers();
+};
 
 startgame.addEventListener("click",startquiz)
+
+questionAnswers.addEventListener("click",nextQuestion)
