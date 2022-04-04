@@ -8,7 +8,6 @@ var answersEl = document.getElementById("answers")
 var nextQuestion = document.querySelectorAll("li")
 
 
-console.log(questionSection)
 var listQuestions = [
     "question 1", 
     "question 2",
@@ -25,28 +24,58 @@ questionAnswers[0]=[
     '1',
     '2',
     '3'
-]   
+];
 
-function showAnswers(){ 
-    questionAnswers[0].forEach(function(item){
-    var li =document.createElement("li");
-    var text =document.createTextNode(item);
-    li.appendChild(text);
-    answersEl.appendChild(li);
-    })
-};
+questionAnswers[1]=[
+    'I',
+    'Am',
+    'the next array'
+];
 
-function showquestion(){
+questionAnswers[2]=[
+    '1',
+    '2',
+    '3'
+];
+
+function firstQuestion(){
     var questionH = document.createElement("h1")
-    console.log(questionH)
     questionH.textContent= listQuestions[0];
-    console.log(questionH)
     questionSection.appendChild(questionH);
+
+    questionAnswers[0].forEach(function(item){
+        var li =document.createElement("li");
+        var text =document.createTextNode(item);
+        li.appendChild(text);
+        answersEl.appendChild(li);
+    });
 };
 
-function nextQuestion(){
-    console.log(nextQuestion);
-}
+function secondQuestion(){
+    var questiontwo = document.createElement("h1");
+    questiontwo.textContent=listQuestions[1];
+    questionSection.appendChild(questiontwo);
+    
+    questionAnswers[1].forEach(function(item){
+        var liOne =document.createElement("li");
+        var text =document.createTextNode(item);
+        liOne.appendChild(text);
+        answersEl.appendChild(liOne);
+    });
+};
+
+function thirdQuestion(){
+    var questionThree = document.createElement("h1");
+    questionThree.textContent=listQuestions[2];
+    questionSection.appendChild(questionThree);
+    
+    questionAnswers[2].forEach(function(item){
+        var liTwo =document.createElement("li");
+        var text =document.createTextNode(item);
+        liTwo.appendChild(text);
+        answersEl.appendChild(liTwo);
+    });
+};
 
 function countdown(){
     secondsLeft --
@@ -60,10 +89,9 @@ function startquiz(){
     headerEl.style.display="none";
     timerEL.textContent = secondsLeft;       
     timerid=setInterval(countdown, 1000);
-    showquestion();
-    showAnswers();
+    firstQuestion();
 };
 
 startgame.addEventListener("click",startquiz)
 
-questionAnswers.addEventListener("click",nextQuestion)
+// questionAnswers.addEventListener("click",nextQuestion)
