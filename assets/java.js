@@ -1,96 +1,88 @@
 var startgame = document.getElementById("button");
 var timerEL = document.getElementById("timer");
 var headerEl = document.querySelector("header");
-var secondsLeft = 5;
-var timerid;
-var questionSection = document.getElementById("question");
+var questionEl = document.getElementById("questionC");
 var answersEl = document.getElementById("answers");
-var answersElUno = document.getElementById("answersone");
-var answersElTwo = document.getElementById("answerstwo");
 
+// var secondsLeft = 5;
+var timerid;
+var currentQuestion=0;
+// var choiceOne =document.getElementById("one");
+// var choiceTwo = document.getElementById("two");
+// var choiceThree = document.getElementById("three");
 
-var listQuestions = [
-    "question 1", 
-    "question 2",
-    "question 3"
+var questions =[
+    {
+        questionH:"what does !== mean",
+        answers:["not equal to ","greater than or equal to","true"],
+        point:"not equal to"
+    },{
+        questionH:"how can you delete content from .inner.HTML",
+        answers:["var.style.display='none'","var=false","var=*nothing* "],
+        point:"var=*nothing*"
+    },{
+        questionH:"how can you call this specific element <h1 id=headerOne>",
+        answers:["querySelectAll","document.getElementById","document.getElementByClassName"],
+        point:"document.getElementById"
+    }
 ];
-
-var questionAnswers = [
-    'answersOne',
-    'answersTwo',
-    'answersThree'
-];
-
-questionAnswers[0]=[
-    '1',
-    '2',
-    '3'
-];
-
-questionAnswers[1]=[
-    'I',
-    'Am',
-    'the next array'
-];
-
-questionAnswers[2]=[
-    '1',
-    '2',
-    '3'
-];
-
-var clickQuestion;
 // global question variables
-var questionH;
-function firstQuestion(){
-    questionH = document.createElement("h1")
-    questionH.textContent= listQuestions[0];
-    questionSection.appendChild(questionH);
+// var questionH;
+// function firstQuestion(){
+//     questionH = document.createElement("h1")
+//     questionH.textContent= listQuestions[0];
+//     questionSection.appendChild(questionH);
 
-    questionAnswers[0].forEach(function(item){
-        var li =document.createElement("li");
-        var text =document.createTextNode(item);
-        li.appendChild(text);
-        answersEl.appendChild(li);
-    });
-};
+//     document.write(questionAnswers[0[0]]);
+
+//     // questionAnswers[0].forEach(function(item){
+//     //     var text =document.createTextNode(item);
+//     //     choiceOne.appendChild(text);
+//     //     answersEl.appendChild(choiceOne);
+//     // });
+// };
 
 
-var questionTwo;
-function secondQuestion(){
-    questionTwo = document.createElement("h1");
-    questionTwo.textContent=listQuestions[1];
-    questionSection.appendChild(questionTwo);
+// var questionTwo;
+// function secondQuestion(){
+//     questionTwo = document.createElement("h1");
+//     questionTwo.textContent=listQuestions[1];
+//     questionSection.appendChild(questionTwo);
     
-    questionAnswers[1].forEach(function(item){
-        var liOne =document.createElement("li");
-        var text =document.createTextNode(item);
-        liOne.appendChild(text);
-        answersElUno.appendChild(liOne);
-    });
+//     questionAnswers[1].forEach(function(item){
+//         var liOne =document.createElement("li");
+//         var text =document.createTextNode(item);
+//         liOne.appendChild(text);
+//         answersElUno.appendChild(liOne);
+//     });
 
-    questionH.style.display="none";
-    answersEl.style.display="none";
-};
+//     questionH.style.display="none";
+//     answersEl.style.display="none";
+// };
 
 
-var questionThree;
-function thirdQuestion(){
-    questionThree = document.createElement("h1");
-    questionThree.textContent=listQuestions[2];
-    questionSection.appendChild(questionThree);
+// var questionThree;
+// function thirdQuestion(){
+//     questionThree = document.createElement("h1");
+//     questionThree.textContent=listQuestions[2];
+//     questionSection.appendChild(questionThree);
     
-    questionAnswers[2].forEach(function(item){
-        var liTwo =document.createElement("li");
-        var text =document.createTextNode(item);
-        liTwo.appendChild(text);
-        answersElTwo.appendChild(liTwo);
-    });
+//     questionAnswers[2].forEach(function(item){
+//         var liTwo =document.createElement("li");
+//         var text =document.createTextNode(item);
+//         liTwo.appendChild(text);
+//         answersElTwo.appendChild(liTwo);
+//     });
 
-    questionTwo.style.display="none";
-    answersElUno.style.display="none";
-};
+//     questionTwo.style.display="none";
+//     answersElUno.style.display="none";
+// };
 
+function rightAnswer(){
+    console.log('we made it')
+}
+
+// starts timer
 function countdown(){
     secondsLeft --
     timerEL.textContent = secondsLeft;
@@ -103,11 +95,12 @@ function startquiz(){
     headerEl.style.display="none";
     timerEL.textContent = secondsLeft;       
     timerid=setInterval(countdown, 1000);
-    firstQuestion();
+    // firstQuestion();
 };
 
+// starts quiz
 startgame.addEventListener("click",startquiz);
+// next questions
 
-answersEl.addEventListener("click",secondQuestion);
 
-answersElUno.addEventListener("click",thirdQuestion);
+// pointOne.addEventListener("click",rightAnswer);
