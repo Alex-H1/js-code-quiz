@@ -4,8 +4,9 @@ var headerEl = document.querySelector("header");
 var secondsLeft = 5;
 var timerid;
 var questionSection = document.getElementById("question");
-var answersEl = document.getElementById("answers")
-var nextQuestion = document.querySelectorAll("li")
+var answersEl = document.getElementById("answers");
+var answersElUno = document.getElementById("answersone");
+var answersElTwo = document.getElementById("answerstwo");
 
 
 var listQuestions = [
@@ -38,8 +39,11 @@ questionAnswers[2]=[
     '3'
 ];
 
+var clickQuestion;
+// global question variables
+var questionH;
 function firstQuestion(){
-    var questionH = document.createElement("h1")
+    questionH = document.createElement("h1")
     questionH.textContent= listQuestions[0];
     questionSection.appendChild(questionH);
 
@@ -51,21 +55,28 @@ function firstQuestion(){
     });
 };
 
+
+var questionTwo;
 function secondQuestion(){
-    var questiontwo = document.createElement("h1");
-    questiontwo.textContent=listQuestions[1];
-    questionSection.appendChild(questiontwo);
+    questionTwo = document.createElement("h1");
+    questionTwo.textContent=listQuestions[1];
+    questionSection.appendChild(questionTwo);
     
     questionAnswers[1].forEach(function(item){
         var liOne =document.createElement("li");
         var text =document.createTextNode(item);
         liOne.appendChild(text);
-        answersEl.appendChild(liOne);
+        answersElUno.appendChild(liOne);
     });
+
+    questionH.style.display="none";
+    answersEl.style.display="none";
 };
 
+
+var questionThree;
 function thirdQuestion(){
-    var questionThree = document.createElement("h1");
+    questionThree = document.createElement("h1");
     questionThree.textContent=listQuestions[2];
     questionSection.appendChild(questionThree);
     
@@ -73,8 +84,11 @@ function thirdQuestion(){
         var liTwo =document.createElement("li");
         var text =document.createTextNode(item);
         liTwo.appendChild(text);
-        answersEl.appendChild(liTwo);
+        answersElTwo.appendChild(liTwo);
     });
+
+    questionTwo.style.display="none";
+    answersElUno.style.display="none";
 };
 
 function countdown(){
@@ -92,6 +106,8 @@ function startquiz(){
     firstQuestion();
 };
 
-startgame.addEventListener("click",startquiz)
+startgame.addEventListener("click",startquiz);
 
-// questionAnswers.addEventListener("click",nextQuestion)
+answersEl.addEventListener("click",secondQuestion);
+
+answersElUno.addEventListener("click",thirdQuestion);
