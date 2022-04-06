@@ -10,6 +10,8 @@ var finishedEl = document.getElementById("finished");
 var scoreEl = document.getElementById("score");
 var finalScoreEl = document.getElementById("finalScore");
 var wrongEl = document.getElementById("wrong");
+var initiailsEl = document.getElementById("initials");
+var enterEl = document.getElementById("enter");
 var secondsLeft = 30;
 var timerid;
 var currentI=0;
@@ -31,8 +33,6 @@ var questions =[
 ];
 
 function nextQuestion(){
-    
-
     // question title 
     var currentQuestion= questions[currentI];
     Qtitle.textContent = currentQuestion.questionT;
@@ -44,7 +44,7 @@ function nextQuestion(){
         questionList.setAttribute("value", answer);
 
         // creates and displays question choices  
-        questionList.textContent=i +1 +answer;
+        questionList.textContent= answer;
         questionEl.appendChild(questionList);
         
         questionList.addEventListener("click",questionC);
@@ -57,7 +57,7 @@ function questionC(){
         wrongEl.removeAttribute("class");
         setTimeout(function(){
             wrongEl.setAttribute("class","hideWrong");
-        },1000);
+        },500);
     }
     
     // next question
@@ -70,7 +70,7 @@ function questionC(){
     }
 
 };
-
+    // show results
 function done(){
     questionDiv.setAttribute("class","none")
     clearInterval(timerid);
@@ -78,8 +78,20 @@ function done(){
     finalScoreEl.textContent = secondsLeft;
 };
 
+function score(){
+    var initials =initiailsEl.value.trim();
 
+    if(initials !==""){
+        var newScore =JSON.parse(window.localStorage.getItem("newScore")) || [];
 
+        var updatedScore={
+            uScore: secondsLeft,
+            initials: initials
+        };
+        newScore.push(updatedScore);
+        window.localStorage.setItem("newScore",JSON.stringify(newScore));
+    }
+}
 
 // starts timer
 function countdown(){
@@ -89,6 +101,7 @@ function countdown(){
         clearInterval(timerid)
     }
 };
+
 
 function startquiz(){
     headerEl.style.display="none";
@@ -100,3 +113,4 @@ function startquiz(){
 
 // starts quiz
 startgame.addEventListener("click",startquiz);
+enterEl.addEventListener("click",score)
