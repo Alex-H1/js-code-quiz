@@ -7,4 +7,17 @@ h1{
 #button{
     margin-left: 50%;
     margin-right: 50%;
+    display: block;
+    background-color: greenyellow;
+    color: bisque;
+    font-size: xx-large;
+}
+
+.answers button{
+    background-color: greenyellow;
+    display: block;
+}
+
+.none{
+    display: none;
 }
