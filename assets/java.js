@@ -4,8 +4,12 @@ var headerEl = document.querySelector("header");
 var questionEl = document.getElementById("questionC");
 var answersEl = document.getElementById("answers");
 var questionDiv= document.getElementById("questions");
-var title=document.getElementById("title")
+var title=document.getElementById("startScreen");
+var Qtitle = document.getElementById("title");
 var finishedEl = document.getElementById("finished");
+var scoreEl = document.getElementById("score");
+var finalScoreEl = document.getElementById("finalScore");
+var wrongEl = document.getElementById("wrong");
 var secondsLeft = 30;
 var timerid;
 var currentI=0;
@@ -31,43 +35,48 @@ function nextQuestion(){
 
     // question title 
     var currentQuestion= questions[currentI];
-    title.textContent = currentQuestion.questionT;
+    Qtitle.textContent = currentQuestion.questionT;
     questionEl.innerHTML="";
 
-    currentQuestion.answers.forEach(function(answers,i){
+    currentQuestion.answers.forEach(function(answer,i){
         var questionList = document.createElement("button");
-        // questionList.setAttribute("class","answers");
-        questionList.setAttribute("value", answers);
+        questionList.setAttribute("class","answers");
+        questionList.setAttribute("value", answer);
 
         // creates and displays question choices  
-        questionList.textContent=i +1+"one."+answers;
+        questionList.textContent=i +1 +answer;
         questionEl.appendChild(questionList);
-
-        questionList.addEventListener("click",questionEl);
+        
+        questionList.addEventListener("click",questionC);
     });
-    console.log(questionEl);
 };
 
 function questionC(){
     if(this.value !== questions[currentI].point){
-        secondsLeft -=30;
-
-        if(time<0){
-            time=0;
-        }
+        secondsLeft -=5;
+        wrongEl.removeAttribute("class");
+        setTimeout(function(){
+            wrongEl.setAttribute("class","hideWrong");
+        },1000);
     }
+    
     // next question
     currentI++;
 
-    if(currentI !== questions.length){
-        nextQuestion();
-    }else{
+    if(currentI === questions.length){
         done();
+    }else{
+        nextQuestion();
     }
 
 };
 
-
+function done(){
+    questionDiv.setAttribute("class","none")
+    clearInterval(timerid);
+    finishedEl.removeAttribute("class");
+    finalScoreEl.textContent = secondsLeft;
+};
 
 
 

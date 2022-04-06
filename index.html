@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h1>click button to start game</h1>
+        <h1 id="startScreen">click button to start game</h1>
         <button id="button">
             Start game
         </button>
@@ -20,15 +20,19 @@
     <section>
         <div id="questions" class="none">
             <h1 id="title"></h1>
-            <div id="questionC" class="choices">
-
+            <div id="questionC" class="choices"></div>
+            <div id="wrong" class="hideWrong">
+                <p>wrong</p>
             </div>
         </div>
-
+        <div id="score"></div>
 
         <div id="finished" class="none">
-            <h2>finnished</h2>
-            <p id="finalScore"></p>
+            <h1>finnished</h1>
+            <h2 id="finalScore"></h2>
+            <h3>
+                Enter initials: <input type="text" id="initials"/>
+            </h3>
         </div>
 
     </section>
