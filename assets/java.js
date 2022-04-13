@@ -102,7 +102,6 @@ function countdown(){
     }
 };
 
-
 function startquiz(){
     headerEl.style.display="none";
     questionDiv.removeAttribute("class");
