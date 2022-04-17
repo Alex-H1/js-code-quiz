@@ -1,4 +1,4 @@
-# Js-cCode-Quiz
+# Js-Code-Quiz
 
 ## Description
 This is my JS-Code-Quiz
