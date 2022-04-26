@@ -12,3 +12,6 @@ If a answer is then pressed it activates another function that function states t
 click [here](https://alex-h1.github.io/js-code-quiz/) to view my deployed website.
 
 ![alt text](/assets/Animation.gif)
+
+## License
+License under [MIT LICENSE](license)
